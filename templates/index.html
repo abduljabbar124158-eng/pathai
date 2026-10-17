@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PathAI — Learning & Career Assistant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Silkscreen:wght@400;700&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="nothing-body">
+
+<!-- Nothing Phone Lock / Boot Screen -->
+<div class="welcome-screen nothing-lockscreen" id="welcome-screen">
+  <div class="lock-grid-overlay"></div>
+  <div class="welcome-card nothing-phone-widget">
+    
+    <!-- Top Lock Header -->
+    <div class="lock-top-bar" style="justify-content: center;">
+      <div class="lock-telemetry">
+        <span class="rec-dot-pulse">●</span>
+        <span class="lock-tag">PATHAI // SYSTEM READY</span>
+      </div>
+    </div>
+
+    <!-- Massive Nothing Dot-Matrix Clock -->
+    <div class="nothing-hero-clock">
+      <div class="matrix-time" id="lock-clock">10:42</div>
+      <div class="matrix-date" id="lock-date">FRI, 16 OCT</div>
+    </div>
+
+    <!-- Glyph Light Ring Decorative Visual -->
+    <div class="glyph-ring-preview">
+      <div class="glyph-arc arc-top"></div>
+      <div class="glyph-arc arc-center">
+        <div class="glyph-center-dot">✦</div>
+      </div>
+      <div class="glyph-arc arc-bottom"></div>
+    </div>
+
+    <div class="welcome-content">
+      <h1 class="nothing-title">PATH<span>(AI)</span></h1>
+      <p class="nothing-lead">Personal AI Assistant engineered for studying smarter, building technical skills, and accelerating your career.</p>
+      
+      <button type="button" class="btn-primary start-app-btn nothing-pill-btn" id="start-app-btn" onclick="unlockApp()">
+        <span class="btn-icon">◉</span>
+        <span class="btn-text">UNLOCK PATHAI</span>
+        <span class="btn-arrow">→</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Main Nothing OS Application Shell -->
+<div class="app-shell nothing-shell" id="app-shell" hidden>
+
+  <!-- Sidebar: Nothing Phone Navigation Dock -->
+  <nav class="sidebar nothing-sidebar">
+    
+    <!-- Nothing Brand Header -->
+    <div class="brand nothing-brand">
+      <div class="brand-glyph-box">
+        <span class="brand-glyph-led"></span>
+        <span class="brand-glyph-icon">✦</span>
+      </div>
+      <div class="brand-info">
+        <div class="brand-name">PATH<span>(AI)</span></div>
+        <div class="brand-tag">LEARNING &amp; CAREER ASSISTANT</div>
+      </div>
+    </div>
+
+    <!-- Navigation Group with Nothing Tape Numbers -->
+    <div class="nav-group nothing-nav">
+      <button class="nav-item active" data-panel="dashboard">
+        <span class="nav-idx">(01)</span>
+        <span class="nav-icon">◈</span>
+        <span class="nav-label">Dashboard</span>
+        <span class="nav-active-pip"></span>
+      </button>
+      <button class="nav-item" data-panel="chatbot">
+        <span class="nav-idx">(02)</span>
+        <span class="nav-icon">🤖</span>
+        <span class="nav-label">AI Chatbot</span>
+        <span class="nav-active-pip"></span>
+      </button>
+      <button class="nav-item" data-panel="pdfchat">
+        <span class="nav-idx">(03)</span>
+        <span class="nav-icon">📄</span>
+        <span class="nav-label">PDF Chat</span>
+        <span class="nav-active-pip"></span>
+      </button>
+      <button class="nav-item" data-panel="quiz">
+        <span class="nav-idx">(04)</span>
+        <span class="nav-icon">📝</span>
+        <span class="nav-label">Quiz Generator</span>
+        <span class="nav-active-pip"></span>
+      </button>
+      <button class="nav-item" data-panel="notes">
+        <span class="nav-idx">(05)</span>
+        <span class="nav-icon">📚</span>
+        <span class="nav-label">Notes Summarizer</span>
+        <span class="nav-active-pip"></span>
+      </button>
+      <button class="nav-item" data-panel="resume">
+        <span class="nav-idx">(06)</span>
+        <span class="nav-icon">💼</span>
+        <span class="nav-label">Resume Analyzer</span>
+        <span class="nav-active-pip"></span>
+      </button>
+      <button class="nav-item" data-panel="interview">
+        <span class="nav-idx">(07)</span>
+        <span class="nav-icon">🎤</span>
+        <span class="nav-label">Mock Interview</span>
+        <span class="nav-active-pip"></span>
+      </button>
+      <button class="nav-item" data-panel="planner">
+        <span class="nav-idx">(08)</span>
+        <span class="nav-icon">📅</span>
+        <span class="nav-label">Study Planner</span>
+        <span class="nav-active-pip"></span>
+      </button>
+    </div>
+
+    <!-- Sidebar Footer -->
+    <div class="sidebar-footer nothing-footer">
+      <div class="nothing-logo-mark">PATHAI WORKSPACE</div>
+    </div>
+  </nav>
+
+  <!-- Main Content Stage -->
+  <main class="content nothing-content">
+
+    <!-- Top Navigation Header: Dark and Light Mode Switcher -->
+    <header class="nothing-top-bar" style="justify-content: flex-end;">
+      <div class="top-bar-right">
+        <!-- Theme Mode Switcher -->
+        <button type="button" class="nothing-mini-btn theme-toggle-btn" id="theme-toggle-btn" title="Switch Dark / Light Mode">
+          <span class="theme-icon" id="theme-icon">◐</span>
+          <span id="theme-label">DARK</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Dashboard Panel -->
+    <section class="panel active" id="panel-dashboard">
+      <header class="panel-header nothing-panel-header">
+        <div class="tape-eyebrow">// SECTION 01: SYSTEM OVERVIEW</div>
+        <h1>Your Progress</h1>
+        <p>Real-time analytics and telemetry of your learning milestones and practice sessions.</p>
+      </header>
+
+      <!-- Nothing OS Widget Grid -->
+      <div class="stat-grid" id="stat-grid"><!-- filled by JS --></div>
+      
+      <!-- Milestone Progress Track Widget -->
+      <div class="card nothing-card">
+        <div class="card-head-bar">
+          <span class="card-tag">[ ROADMAP_TELEMETRY ]</span>
+          <h3>Milestone Completion Tracker</h3>
+        </div>
+        <p class="card-caption">Click any node below to toggle completion status in your persistent database.</p>
+        <div class="path-track" id="progress-path"></div>
+      </div>
+    </section>
+
+    <!-- Chatbot Panel -->
+    <section class="panel" id="panel-chatbot">
+      <header class="panel-header nothing-panel-header">
+        <div class="tape-eyebrow">// SECTION 02: CONVERSATIONAL ASSISTANT</div>
+        <h1>AI Chatbot</h1>
+        <p>Ask technical questions, study concepts, architectural patterns, or career questions.</p>
+      </header>
+      <div class="card chat-card nothing-card nothing-chat-card">
+        <div class="chat-card-top">
+          <div class="chat-status-pill">
+            <span class="chat-led"></span>
+            <span id="chat-status-label">ENGINE: OFFLINE DEMO // ACTIVE</span>
+          </div>
+        </div>
+        <div class="chat-log" id="chat-log"></div>
+        <form class="input-row nothing-input-dock" id="chat-form">
+          <input type="text" id="chat-input" placeholder="Ask PathAI anything about your studies or career…" autocomplete="off" required>
+          <button type="submit" class="btn-primary nothing-pill-btn">
+            <span>Send</span>
+            <span class="arrow-glyph">→</span>
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- PDF Chat Panel -->
+    <section class="panel" id="panel-pdfchat">
+      <header class="panel-header nothing-panel-header">
+        <div class="tape-eyebrow">// SECTION 03: DOCUMENT EXTRACTION &amp; QA</div>
+        <h1>PDF Chat</h1>
+        <p>Upload lecture notes, textbook chapters, or project PDFs and query them directly.</p>
+      </header>
+      <div class="card nothing-card">
+        <div class="card-head-bar">
+          <span class="card-tag">[ DOCUMENT_INGESTION ]</span>
+          <h3>Upload Lecture Notes or Syllabus</h3>
+        </div>
+        <form id="pdf-upload-form" class="input-row nothing-input-dock">
+          <input type="file" id="pdf-file-input" accept="application/pdf" required>
+          <button type="submit" class="btn-primary nothing-pill-btn">Upload PDF</button>
+        </form>
+        <p class="hint nothing-hint" id="pdf-upload-status"></p>
+      </div>
+      <div class="card chat-card nothing-card nothing-chat-card">
+        <div class="chat-card-top">
+          <div class="chat-status-pill">
+            <span class="chat-led"></span>
+            <span>CONTEXT: LOADED DOCUMENT</span>
+          </div>
+        </div>
+        <div class="chat-log" id="pdf-chat-log"></div>
+        <form class="input-row nothing-input-dock" id="pdf-ask-form">
+          <input type="text" id="pdf-question-input" placeholder="Ask a targeted question about the uploaded PDF…" autocomplete="off" required>
+          <button type="submit" class="btn-primary nothing-pill-btn">Ask Question →</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Quiz Generator Panel -->
+    <section class="panel" id="panel-quiz">
+      <header class="panel-header nothing-panel-header">
+        <div class="tape-eyebrow">// SECTION 04: KNOWLEDGE EVALUATION</div>
+        <h1>Quiz Generator</h1>
+        <p>Generate immediate multiple-choice assessment quizzes from any syllabus topic or notes.</p>
+      </header>
+      <div class="card nothing-card">
+        <form id="quiz-form">
+          <label>Topic or Raw Notes</label>
+          <textarea id="quiz-content" rows="4" placeholder="e.g. Paste operating system notes or enter a topic like 'Docker container orchestration & Kubernetes'" required></textarea>
+          
+          <div class="form-row-split">
+            <div class="form-col">
+              <label>Number of Questions (1-10)</label>
+              <input type="number" id="quiz-count" value="5" min="1" max="10">
+            </div>
+            <div class="form-col btn-align-bottom">
+              <button type="submit" class="btn-primary nothing-pill-btn w-full">Generate Quiz Questions →</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="card nothing-card" id="quiz-output"></div>
+    </section>
+
+    <!-- Notes Summarizer Panel -->
+    <section class="panel" id="panel-notes">
+      <header class="panel-header nothing-panel-header">
+        <div class="tape-eyebrow">// SECTION 05: SYNTHESIS &amp; REVISION</div>
+        <h1>Notes Summarizer</h1>
+        <p>Condense lengthy research papers, class lectures, or articles into punchy revision takeaways.</p>
+      </header>
+      <div class="card nothing-card">
+        <form id="notes-form">
+          <label>Topic / Document Title</label>
+          <input type="text" id="notes-title" placeholder="e.g. Module 3: Distributed Systems & Consensus Protocols" required>
+          <label>Full Lecture Notes or Article Text</label>
+          <textarea id="notes-text" rows="7" placeholder="Paste your comprehensive study notes here…" required></textarea>
+          <button type="submit" class="btn-primary nothing-pill-btn">Summarize Key Points →</button>
+        </form>
+      </div>
+      <div class="card nothing-card" id="notes-output"></div>
+    </section>
+
+    <!-- Resume Analyzer Panel -->
+    <section class="panel" id="panel-resume">
+      <header class="panel-header nothing-panel-header">
+        <div class="tape-eyebrow">// SECTION 06: CAREER ATS ALIGNMENT</div>
+        <h1>Resume Analyzer</h1>
+        <p>Benchmark your resume against target job descriptions and get actionable gap analysis.</p>
+      </header>
+      <div class="card nothing-card">
+        <form id="resume-form">
+          <label>Target Job Title</label>
+          <input type="text" id="resume-job-title" placeholder="e.g. Cloud Engineer Intern / Full-Stack Developer">
+          
+          <label>Resume (Upload PDF or Paste Text)</label>
+          <input type="file" id="resume-file-input" accept="application/pdf">
+          <textarea id="resume-text" rows="4" placeholder="…or paste raw resume text here if not uploading PDF"></textarea>
+          
+          <label>Target Job Description</label>
+          <textarea id="resume-jd" rows="5" placeholder="Paste the job requirements, responsibilities, and qualifications here…" required></textarea>
+          
+          <button type="submit" class="btn-primary nothing-pill-btn">Analyze ATS Match &amp; Gaps →</button>
+        </form>
+      </div>
+      <div class="card nothing-card" id="resume-output"></div>
+    </section>
+
+    <!-- Interview Practice Panel -->
+    <section class="panel" id="panel-interview">
+      <header class="panel-header nothing-panel-header">
+        <div class="tape-eyebrow">// SECTION 07: TECHNICAL MOCK INTERVIEW</div>
+        <h1>Interview Practice</h1>
+        <p>Simulate an interactive technical interview with real-time feedback and follow-up prompts.</p>
+      </header>
+      <div class="card nothing-card">
+        <div class="card-head-bar">
+          <h3>Select Target Interview Role</h3>
+        </div>
+        <form id="interview-start-form" class="input-row nothing-input-dock">
+          <input type="text" id="interview-role" placeholder="e.g. Frontend Engineer, DevOps Intern, ML Researcher" required>
+          <button type="submit" class="btn-primary nothing-pill-btn">Start Mock Interview →</button>
+        </form>
+      </div>
+      <div class="card chat-card nothing-card nothing-chat-card" id="interview-card" style="display:none;">
+        <div class="chat-card-top">
+          <div class="chat-status-pill">
+            <span>INTERVIEW IN PROGRESS</span>
+          </div>
+        </div>
+        <div class="chat-log" id="interview-log"></div>
+        <form class="input-row nothing-input-dock" id="interview-answer-form">
+          <input type="text" id="interview-answer-input" placeholder="Type your answer clearly and with technical depth…" autocomplete="off" required>
+          <button type="submit" class="btn-primary nothing-pill-btn">Submit Answer →</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Study Planner Panel -->
+    <section class="panel" id="panel-planner">
+      <header class="panel-header nothing-panel-header">
+        <div class="tape-eyebrow">// SECTION 08: CURRICULUM ROADMAP</div>
+        <h1>Study Planner</h1>
+        <p>Generate milestone-driven study roadmaps customized to your current skills and career targets.</p>
+      </header>
+      <div class="card nothing-card">
+        <form id="planner-form">
+          <label>Target Career / Study Goal</label>
+          <input type="text" id="planner-goal" placeholder="e.g. Master Backend Engineering & Cloud Computing in 8 Weeks" required>
+          
+          <label>Current Skills &amp; Experience (Optional)</label>
+          <input type="text" id="planner-skills" placeholder="e.g. Basic JavaScript, Python syntax, Git">
+          
+          <button type="submit" class="btn-primary nothing-pill-btn">Generate Structured Roadmap →</button>
+        </form>
+      </div>
+      <div class="card nothing-card" id="planner-output"></div>
+    </section>
+
+  </main>
+</div>
+
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
