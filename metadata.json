@@ -1,0 +1,8 @@
+{
+  "name": "PathAI - AI Learning & Career Assistant",
+  "description": "Comprehensive AI-powered study and career development suite with AI Chatbot, PDF Chat, Quiz Generator, Notes Summarizer, Resume Analyzer, Interview Practice, Study Planner, and Progress Tracking.",
+  "permissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
