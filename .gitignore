@@ -1,0 +1,21 @@
+# ----- Secrets / environment -----
+.env
+*.local
+
+# ----- Runtime data (auto-created; may hold personal chat data) -----
+data/
+
+# ----- Node / build -----
+node_modules/
+dist/
+*.tsbuildinfo
+
+# ----- Logs -----
+npm-debug.log*
+*.log
+
+# ----- OS / editor junk -----
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
